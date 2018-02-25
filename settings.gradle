@@ -1,0 +1,17 @@
+rootProject.name = 'java-bgn'
+
+include 'chapter03'
+
+println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
+        '"Java for absolute Beginners" ' +
+        ' published by Apress in order to learn and practice the Java Language versions 9,10,11. ')
+
+//we check if the modules have gradle configuration files
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.exists()
+    assert project.buildFile.isFile()
+}
+
+
