@@ -4,4 +4,5 @@
  * @author iuliana.cosmina
  * @version 1.0-SNAPSHOT
  */
+@Deprecated
 package com.apress.bgn.ch3;
