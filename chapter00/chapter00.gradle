@@ -8,15 +8,15 @@ buildscript {
 
 }
 
-group 'com.apress.bgn.ch3'
-ext.moduleName = 'chapter.three'
+group 'com.apress.bgn.ch0'
+ext.moduleName = 'chapter.zero'
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
 dependencies {
-    compile project(':chapter00')
+    compile misc.logback
     testImplementation testing.junit
 }
 

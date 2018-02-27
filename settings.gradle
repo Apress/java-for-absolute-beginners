@@ -1,5 +1,6 @@
 rootProject.name = 'java-bgn'
 
+include 'chapter00'
 include 'chapter03'
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
