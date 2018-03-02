@@ -1,8 +1,11 @@
 /**
  * Created by iuliana.cosmina on 1/14/18.
+ * If you decomment the open declarative, the Main method in chapter01 will no longer fail with InaccessibleObjectException
  */
-module chapter.zero {
+/*open*/ module chapter.zero {
     requires transitive org.slf4j;
 
-    exports com.apress.bgn.ch0 to chapter.three;
+    opens com.apress.bgn.ch0 to chapter.three;
+
+    exports com.apress.bgn.ch0 to chapter.one, chapter.three;
 }
