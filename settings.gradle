@@ -4,6 +4,11 @@ include 'chapter00'
 include 'chapter01'
 include 'chapter03'
 
+include 'chapter04:data-types'
+include 'chapter04:data-structures'
+include 'chapter04:primitives'
+include 'chapter04:collections'
+
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Java for absolute Beginners" ' +
         ' published by Apress in order to learn and practice the Java Language versions 9,10,11. ')
@@ -15,5 +20,4 @@ rootProject.children.each { project ->
     assert project.buildFile.exists()
     assert project.buildFile.isFile()
 }
-
 
