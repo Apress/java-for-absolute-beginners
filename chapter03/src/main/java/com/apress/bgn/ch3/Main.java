@@ -1,10 +1,12 @@
 package com.apress.bgn.ch3;
 
 import com.apress.bgn.ch0.Base;
+import com.apress.bgn.ch0.service.NakedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
+import java.util.ServiceLoader;
 
 /**
  * Created by iuliana.cosmina on 2/26/18
@@ -29,5 +31,11 @@ public class Main {
         } catch (IllegalAccessException e) {
             LOGGER.error("Field 'secret' cannot be set!" );
         }
+
+        //testing service
+        ServiceLoader<NakedService> loader = ServiceLoader.load(NakedService.class);
+        NakedService service = loader.findFirst().get();
+        LOGGER.info("Service found: {}, with secret '{}'",service.getClass(), service.theSecret());
+
     }
 }

@@ -3,4 +3,6 @@
  */
 module chapter.three {
     requires chapter.zero;
+
+    uses com.apress.bgn.ch0.service.NakedService;
 }

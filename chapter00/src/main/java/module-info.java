@@ -8,4 +8,6 @@
     opens com.apress.bgn.ch0 to chapter.three;
 
     exports com.apress.bgn.ch0 to chapter.one, chapter.three;
+
+    exports com.apress.bgn.ch0.service;
 }
