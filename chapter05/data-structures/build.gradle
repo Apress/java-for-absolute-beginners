@@ -1,0 +1,18 @@
+plugins {
+    id 'java-library'
+}
+
+/* module with data structures */
+ext.moduleName = 'chapter.five.ds'
+
+jar {
+    manifest {
+        attributes(
+                "Created-By": System.getProperty('java.version'),
+                "Specification-Title": "Java for Absolute Beginners",
+                "Main-Class": "com.apress.bgn.ch5.DataStructuresDemo",
+                "Implementation-Version": version,
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}

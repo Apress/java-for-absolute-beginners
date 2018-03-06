@@ -8,8 +8,8 @@ buildscript {
 
 }
 
-group 'com.apress.bgn.ch4'
-ext.moduleName = 'chapter.three'
+group 'com.apress.bgn.ch7'
+ext.moduleName = 'chapter.seven'
 
 apply plugin: 'java'
 apply plugin: 'idea'

@@ -3,11 +3,24 @@ rootProject.name = 'java-bgn'
 include 'chapter00'
 include 'chapter01'
 include 'chapter03'
+include 'chapter04'
 
-include 'chapter04:data-types'
-include 'chapter04:data-structures'
-include 'chapter04:primitives'
-include 'chapter04:collections'
+include 'chapter05:data-types'
+include 'chapter05:data-structures'
+include 'chapter05:primitives'
+include 'chapter05:collections'
+
+include 'chapter06'
+include 'chapter07'
+include 'chapter08'
+include 'chapter09'
+include 'chapter10'
+
+include 'chapter11:read-write-file'
+include 'chapter11:serialization'
+include 'chapter11:media-handling'
+
+include 'chapter12'
 
 println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
         '"Java for absolute Beginners" ' +
