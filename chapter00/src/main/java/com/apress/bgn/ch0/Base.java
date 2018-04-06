@@ -1,14 +1,14 @@
 package com.apress.bgn.ch0;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by iuliana.cosmina on 2/25/18
  */
 public class Base {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(Base.class);
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private int secret = 0;
 
@@ -24,7 +24,7 @@ public class Base {
     }
 }
 
-class HiddenBase{
+class HiddenBase {
     // you cannot see me
 }
 
