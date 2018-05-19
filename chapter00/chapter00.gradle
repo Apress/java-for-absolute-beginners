@@ -8,6 +8,10 @@ buildscript {
 
 }
 
+plugins {
+    id 'java-library'
+}
+
 group 'com.apress.bgn.ch0'
 ext.moduleName = 'chapter.zero'
 
@@ -40,6 +44,7 @@ afterEvaluate {
         inputs.property("moduleName", moduleName)
         doFirst {
             options.compilerArgs = [
+                    '-proc:none',
                     '--module-path', classpath.asPath,
             ]
             classpath = files()
@@ -50,6 +55,7 @@ afterEvaluate {
         inputs.property("moduleName", moduleName)
         doFirst {
             options.compilerArgs = [
+                    '-proc:none',
                     '--module-path', classpath.asPath,
                     '--add-modules', 'org.junit.jupiter.engine',
                     '--add-reads', "$moduleName=org.junit.jupiter.engine",

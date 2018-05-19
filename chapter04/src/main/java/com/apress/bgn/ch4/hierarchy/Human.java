@@ -1,4 +1,4 @@
-package com.apress.bgn.ch4.basic;
+package com.apress.bgn.ch4.hierarchy;
 
 /**
  * @author iuliana.cosmina

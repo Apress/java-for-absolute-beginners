@@ -7,6 +7,10 @@ buildscript {
     }
 
 }
+plugins {
+    id 'java-library'
+}
+
 
 group 'com.apress.bgn.ch3'
 ext.moduleName = 'chapter.three'
@@ -41,6 +45,7 @@ afterEvaluate {
         inputs.property("moduleName", moduleName)
         doFirst {
             options.compilerArgs = [
+                    '-proc:none',
                     '--module-path', classpath.asPath,
             ]
             classpath = files()
@@ -51,6 +56,7 @@ afterEvaluate {
         inputs.property("moduleName", moduleName)
         doFirst {
             options.compilerArgs = [
+                    '-proc:none',
                     '--module-path', classpath.asPath,
                     '--add-modules', 'org.junit.jupiter.engine',
                     '--add-reads', "$moduleName=org.junit.jupiter.engine",
