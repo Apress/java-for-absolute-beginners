@@ -5,6 +5,7 @@ include 'chapter01'
 include 'chapter03'
 include 'chapter04'
 
+include 'chapter05:arrays'
 include 'chapter05:data-types'
 include 'chapter05:data-structures'
 include 'chapter05:primitives'
@@ -33,4 +34,5 @@ rootProject.children.each { project ->
     assert project.buildFile.exists()
     assert project.buildFile.isFile()
 }
+include 'arrays'
 

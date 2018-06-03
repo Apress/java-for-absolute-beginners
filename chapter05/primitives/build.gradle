@@ -5,6 +5,11 @@ plugins {
 /* module with primitive types examples */
 ext.moduleName = 'chapter.five.primitives'
 
+dependencies {
+    compile project(':chapter04')
+    testImplementation testing.junit
+}
+
 jar {
     manifest {
         attributes(

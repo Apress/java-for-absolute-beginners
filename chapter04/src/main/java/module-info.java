@@ -4,4 +4,5 @@
 module chapter.four {
     requires chapter.zero;
     requires transitive java.logging;
+    exports com.apress.bgn.ch4.hierarchy;
 }
