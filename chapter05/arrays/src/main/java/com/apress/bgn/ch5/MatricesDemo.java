@@ -27,52 +27,42 @@ SOFTWARE.
 */
 package com.apress.bgn.ch5;
 
-import java.util.Arrays;
-
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class ArraysDemo {
-
-    int array[];
-
+public class MatricesDemo {
     public static void main(String... args) {
-        ArraysDemo ad = new ArraysDemo();
-        if (ad.array == null) {
-            System.out.println("array unusable");
+        // bi-didimensional array: 2 rows, 2 columns
+        int[][] intMatrix = {{1, 0}, {0, 1}};
+        for (int i = 0; i < intMatrix.length; ++i) {
+            for (int j = 0; j < intMatrix[i].length; ++j) {
+                System.out.print(intMatrix[i][j] + " ");
+            }
+            System.out.println();
         }
 
-        // after proper initialization
-        ad.array = new int[2];
-        for (int i = 0; i < ad.array.length; ++i) {
-            System.out.println("array["+ i +"]= " + ad.array[i]);
+        System.out.println("-----------------------");
+        int[][] intMatrix2 = new int[2][2];
+        for (int i = 0; i < intMatrix2.length; ++i) {
+            for (int j = 0; j < intMatrix2[i].length; ++j) {
+                intMatrix2[i][j] = i + j;
+                System.out.print(intMatrix2[i][j] + " ");
+            }
+            System.out.println();
         }
 
-        System.out.println(Arrays.toString(ad.array));
-
-        // setting elements explicitly
-        ad.array[0] = 5;
-        ad.array[3] =7;
-        for (int i = 0; i < ad.array.length; ++i) {
-            System.out.println("array["+ i +"]= " + ad.array[i]);
+        System.out.println("-----------------------");
+        int[][][] intMatrix3 = new int[2][2][2];
+        for (int i = 0; i < intMatrix3.length; ++i) {
+            for (int j = 0; j < intMatrix3[i].length; ++j) {
+                for (int k = 0; k < intMatrix3[i][j].length; ++k) {
+                    intMatrix3[i][j][k] = i + j + k;
+                    System.out.print("["+i+", "+j+", " + k + "]");
+                }
+                System.out.println();
+            }
+            System.out.println();
         }
-
-        // define array with direct initialization
-        int another[] = {1,4,3,2};
-        for (int i = 0; i < another.length; ++i) {
-            System.out.println("array["+ i +"]= " + another[i]);
-        }
-
-        //sort array
-        Arrays.sort(another);
-        for (int i = 0; i < another.length; ++i) {
-            System.out.println("array["+ i +"]= " + another[i]);
-        }
-
-        //Arrays.stream(another).forEach(element -> System.out.println(element));
-        Arrays.stream(another).forEach(x -> System.out.println(x));
-
-
     }
 }

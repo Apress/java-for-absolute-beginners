@@ -27,52 +27,31 @@ SOFTWARE.
 */
 package com.apress.bgn.ch5;
 
-import java.util.Arrays;
+import com.apress.bgn.ch4.hierarchy.*;
 
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class ArraysDemo {
-
-    int array[];
-
+public class PerformerArrayDemo {
     public static void main(String... args) {
-        ArraysDemo ad = new ArraysDemo();
-        if (ad.array == null) {
-            System.out.println("array unusable");
+        Performer[] array = new Performer[2];
+        for (int i = 0; i < array.length; ++i) {
+            System.out.println("performer[" + i + "]= " + array[i] );
         }
 
-        // after proper initialization
-        ad.array = new int[2];
-        for (int i = 0; i < ad.array.length; ++i) {
-            System.out.println("array["+ i +"]= " + ad.array[i]);
+        array[0] = new  Performer("John", 40, 1.91f, Gender.MALE);
+        array[1] = new  Performer("Julianna", 35, 1.61f, Gender.FEMALE);
+
+        for (int i = 0; i < array.length; ++i) {
+            System.out.println("performer[" + i + "]= " + array[i].getName() );
         }
 
-        System.out.println(Arrays.toString(ad.array));
+        Performer david = new  Performer("David", 55, 1.81f, Gender.MALE);
+        array[1] = david;
 
-        // setting elements explicitly
-        ad.array[0] = 5;
-        ad.array[3] =7;
-        for (int i = 0; i < ad.array.length; ++i) {
-            System.out.println("array["+ i +"]= " + ad.array[i]);
+        for (int i = 0; i < array.length; ++i) {
+            System.out.println("performer[" + i + "]= " + array[i].getName() );
         }
-
-        // define array with direct initialization
-        int another[] = {1,4,3,2};
-        for (int i = 0; i < another.length; ++i) {
-            System.out.println("array["+ i +"]= " + another[i]);
-        }
-
-        //sort array
-        Arrays.sort(another);
-        for (int i = 0; i < another.length; ++i) {
-            System.out.println("array["+ i +"]= " + another[i]);
-        }
-
-        //Arrays.stream(another).forEach(element -> System.out.println(element));
-        Arrays.stream(another).forEach(x -> System.out.println(x));
-
-
     }
 }

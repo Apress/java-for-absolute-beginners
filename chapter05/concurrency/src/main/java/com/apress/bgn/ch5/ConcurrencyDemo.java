@@ -27,52 +27,12 @@ SOFTWARE.
 */
 package com.apress.bgn.ch5;
 
-import java.util.Arrays;
-
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class ArraysDemo {
-
-    int array[];
-
+public class ConcurrencyDemo {
     public static void main(String... args) {
-        ArraysDemo ad = new ArraysDemo();
-        if (ad.array == null) {
-            System.out.println("array unusable");
-        }
-
-        // after proper initialization
-        ad.array = new int[2];
-        for (int i = 0; i < ad.array.length; ++i) {
-            System.out.println("array["+ i +"]= " + ad.array[i]);
-        }
-
-        System.out.println(Arrays.toString(ad.array));
-
-        // setting elements explicitly
-        ad.array[0] = 5;
-        ad.array[3] =7;
-        for (int i = 0; i < ad.array.length; ++i) {
-            System.out.println("array["+ i +"]= " + ad.array[i]);
-        }
-
-        // define array with direct initialization
-        int another[] = {1,4,3,2};
-        for (int i = 0; i < another.length; ++i) {
-            System.out.println("array["+ i +"]= " + another[i]);
-        }
-
-        //sort array
-        Arrays.sort(another);
-        for (int i = 0; i < another.length; ++i) {
-            System.out.println("array["+ i +"]= " + another[i]);
-        }
-
-        //Arrays.stream(another).forEach(element -> System.out.println(element));
-        Arrays.stream(another).forEach(x -> System.out.println(x));
-
 
     }
 }

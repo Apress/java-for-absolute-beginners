@@ -2,15 +2,15 @@ plugins {
     id 'java-library'
 }
 
-/* module with data types */
-ext.moduleName = 'chapter.five.dt'
+/* module with primitive types examples */
+ext.moduleName = 'chapter.five.concurrency'
 
 jar {
     manifest {
         attributes(
                 "Created-By": System.getProperty('java.version'),
                 "Specification-Title": "Java for Absolute Beginners",
-                "Main-Class": "com.apress.bgn.ch5.DataTypesDemo",
+                "Main-Class": "com.apress.bgn.ch5.ConcurrencyDemo",
                 "Implementation-Version": version,
                 "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
         )

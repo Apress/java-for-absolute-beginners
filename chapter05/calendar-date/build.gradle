@@ -2,16 +2,15 @@ plugins {
     id 'java-library'
 }
 
-/* module with primitive types examples */
-ext.moduleName = 'chapter.five.primitives'
-
+/* module with data structures */
+ext.moduleName = 'chapter.five.cd'
 
 jar {
     manifest {
         attributes(
                 "Created-By": System.getProperty('java.version'),
                 "Specification-Title": "Java for Absolute Beginners",
-                "Main-Class": "com.apress.bgn.ch04.PrimitivesDemo",
+                "Main-Class": "com.apress.bgn.ch5.DataStructuresDemo",
                 "Implementation-Version": version,
                 "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
         )

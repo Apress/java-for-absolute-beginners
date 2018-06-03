@@ -6,8 +6,9 @@ include 'chapter03'
 include 'chapter04'
 
 include 'chapter05:arrays'
-include 'chapter05:data-types'
-include 'chapter05:data-structures'
+include 'chapter05:concurrency'
+include 'chapter05:references'
+include 'chapter05:calendar-date'
 include 'chapter05:primitives'
 include 'chapter05:collections'
 

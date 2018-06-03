@@ -1,4 +1,4 @@
-package com.apress.bgn.ch5;
+package com.apress.bgn.ch5.refs;
 
 import com.apress.bgn.ch4.hierarchy.*;
 
