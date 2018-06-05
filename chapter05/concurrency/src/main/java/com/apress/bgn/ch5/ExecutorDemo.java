@@ -27,12 +27,45 @@ SOFTWARE.
 */
 package com.apress.bgn.ch5;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import static java.lang.Thread.currentThread;
+import static java.lang.Thread.sleep;
+
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class ConcurrencyDemo {
+public class ExecutorDemo {
     public static void main(String... args) {
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        try {
+            for (int j = 0; j < 10; ++j) {
+                executor.submit(() -> {
+                    System.out.println(currentThread().getName() + " started...");
+                    for (int i = 0; i < 10; ++i) {
+                        try {
+                            sleep(i * 10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    System.out.println(currentThread().getName() + " ended.");
+                });
+            }
+            executor.shutdown();
 
+            executor.awaitTermination(5, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            if (!executor.isTerminated()) {
+                System.err.println("cancel non-finished tasks");
+            }
+            executor.shutdownNow();
+            System.out.println("shutdown finished");
+        }
     }
 }
