@@ -31,21 +31,30 @@ package com.apress.bgn.ch7;
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class SeasonDemo {
+public class ForLoopDemo {
     public static void main(String... args) {
-        //Read a
-        int a = Integer.parseInt(args[0]);
+        int arr[] = {5, 1, 4, 2, 3};
+        int arr2[] = {0, 9, 3, 5, 7};
+        int i = 0;
+        for (; ; ) {
+            if (i >= arr.length) {
+                break;
+            }
+            System.out.println("arr[" + i + "] = " + arr[i]);
+            ++i;
+        }
+        System.out.println("Loop exited with index: " + i);
 
-        if (a == 12 || (a >= 1 && a <= 2)) {
-            System.out.println("Winter");
-        } else if (a > 2 && a <= 5) {
-            System.out.println("Spring");
-        } else if (a > 5 && a <= 8) {
-            System.out.println("Summer");
-        } else if (a > 8 && a <= 11) {
-            System.out.println("Autumn");
-        } else {
-            System.out.println("Error");
+
+        for ( i = -1; i++ < arr.length -1;) {
+            System.out.println("arr[" + i + "] = " + arr[i]);
+        }
+        System.out.println("Loop exited with index: " + i);
+
+
+        for (int j = i = 0; i < arr.length && j < arr.length; ++i) {
+            System.out.println("arr[" + i + "] = " + arr[i] + ", arr2[" + j + "] = " + arr[j]);
+            ++j;
         }
     }
 }

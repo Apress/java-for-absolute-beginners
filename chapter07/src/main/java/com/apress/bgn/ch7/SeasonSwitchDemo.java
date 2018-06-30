@@ -31,21 +31,36 @@ package com.apress.bgn.ch7;
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class SeasonDemo {
+public class SeasonSwitchDemo {
     public static void main(String... args) {
         //Read a
         int a = Integer.parseInt(args[0]);
 
-        if (a == 12 || (a >= 1 && a <= 2)) {
-            System.out.println("Winter");
-        } else if (a > 2 && a <= 5) {
-            System.out.println("Spring");
-        } else if (a > 5 && a <= 8) {
-            System.out.println("Summer");
-        } else if (a > 8 && a <= 11) {
-            System.out.println("Autumn");
-        } else {
-            System.out.println("Error");
+        var season = "";
+        switch (a) {
+            case 1:
+            case 2:
+            case 12:
+                season = "winter";
+                break;
+            case 3:
+            case 4:
+            case 5:
+                season = "Spring";
+                break;
+            case 6:
+            case 7:
+            case 8:
+                season = "Summer";
+               break;
+            case 9:
+            case 10:
+            case 11:
+                season = "Autumn";
+                break;
+            default:
+                System.out.println("Error");
         }
+        System.out.println(season);
     }
 }
