@@ -27,30 +27,29 @@ SOFTWARE.
 */
 package com.apress.bgn.ch7;
 
-import java.util.Arrays;
-import java.util.List;
+import java.io.FileNotFoundException;
 
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class ForLoopDemo {
-    public static void main(String... args) {
-        int arr[] = {5, 1, 4, 2, 3};
-        for (int item : arr) {
-            System.out.println(item);
-        }
-        Arrays.stream(arr).forEach(System.out::println);
+public class ReportSampleCode {
+    /*public static void main(String... args) {
+        ErrorContainter errorContainer = new ErrorContainter();
+        try {
 
-        System.out.println("-------------");
-        List<Integer> list = List.of(5, 1, 4, 2, 3);
-        //enhanced for loop syntax
-        for (Integer item : list) {
-            System.out.println(item);
+        } catch (FileNotFoundException | NotParsable e) {
+            errorContainer.addBadFileError(e);
+        } catch (InvestmentMaxException e) {
+            errorContainer.addInvestmentError(e);
+        } catch (CreditIncompatibilityException e) {
+            errorContainer.addIncompatibilityError(e);
+        } finally {
+            if (errorContainer.isEmpty()) {
+                printValidationPassedDocument();
+            } else {
+                printValidationFailedDocument(errorContainer);
+            }
         }
-
-        System.out.println("-------------");
-        //forEach default method
-        list.forEach(System.out::println);
-    }
+    }*/
 }

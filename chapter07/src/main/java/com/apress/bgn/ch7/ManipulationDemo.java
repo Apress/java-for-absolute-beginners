@@ -27,30 +27,56 @@ SOFTWARE.
 */
 package com.apress.bgn.ch7;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class ForLoopDemo {
+public class ManipulationDemo {
+    public static final int arr[] = {5, 1, 4, 2, 3};
+
     public static void main(String... args) {
-        int arr[] = {5, 1, 4, 2, 3};
-        for (int item : arr) {
-            System.out.println(item);
-        }
-        Arrays.stream(arr).forEach(System.out::println);
-
-        System.out.println("-------------");
-        List<Integer> list = List.of(5, 1, 4, 2, 3);
-        //enhanced for loop syntax
-        for (Integer item : list) {
-            System.out.println(item);
+        for (int i = 0; i < arr.length; ++i) {
+            if (i == 3) {
+                System.out.println("Bye bye!");
+                break;
+            }
+            System.out.println("arr[" + i + "] = " + arr[i]);
         }
 
         System.out.println("-------------");
-        //forEach default method
-        list.forEach(System.out::println);
+        for (int i = 0; i < 2; ++i) {
+            HERE:
+            for (int j = 0; j < 2; ++j) {
+                for (int k = 0; k < 2; ++k) {
+                    if (i == j && j == k) {
+                        break HERE;
+                    }
+                    System.out.println("(i, j, k) = (" + i + "," + j + "," + k + ")");
+                }
+            }
+        }
+
+        System.out.println("-------------");
+        for (int i = 0; i < arr.length; ++i) {
+            if (i % 2  != 0) {
+                continue;
+            }
+            System.out.println("arr[" + i + "] = " + arr[i]);
+        }
+
+
+        System.out.println("-------------");
+        for (int i = 0; i < 3; ++i) {
+            HERE:
+            for (int j = 0; j < 3; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    if (k == 1) {
+                        continue HERE;
+                    }
+                    System.out.println("(i, j, k) = (" + i + "," + j + "," + k + ")");
+                }
+            }
+        }
+
     }
 }

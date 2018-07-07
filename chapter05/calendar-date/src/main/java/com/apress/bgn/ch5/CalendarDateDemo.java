@@ -47,6 +47,7 @@ public class CalendarDateDemo {
         System.out.println(currentDate);
         System.out.println("Today: " + sdf.format(currentDate));
 
+
         //deprecated since 1.1
         Date johnBirthday = new Date(77, 9, 16);
         //or

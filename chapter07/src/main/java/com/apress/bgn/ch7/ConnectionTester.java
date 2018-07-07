@@ -27,30 +27,40 @@ SOFTWARE.
 */
 package com.apress.bgn.ch7;
 
-import java.util.Arrays;
-import java.util.List;
+import java.sql.*;
 
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class ForLoopDemo {
-    public static void main(String... args) {
-        int arr[] = {5, 1, 4, 2, 3};
-        for (int item : arr) {
-            System.out.println(item);
-        }
-        Arrays.stream(arr).forEach(System.out::println);
+public class ConnectionTester {
+    public static final int MAX_TRIES = 10;
 
-        System.out.println("-------------");
-        List<Integer> list = List.of(5, 1, 4, 2, 3);
-        //enhanced for loop syntax
-        for (Integer item : list) {
-            System.out.println(item);
-        }
+    public static void main(String... args) throws Exception {
 
-        System.out.println("-------------");
-        //forEach default method
-        list.forEach(System.out::println);
+        int cntTries = 0;
+        Connection con = null;
+        while (con == null && cntTries < MAX_TRIES) {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/sample", "root", "pass");
+            } catch (Exception e) {
+                ++cntTries;
+                System.out.println("Connection refused. Retrying in 5 seconds ...");
+                Thread.sleep(5000);
+            }
+        }
+        if (con != null) {
+            // con != null, do something
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from test");
+            while (rs.next()) {
+                System.out.println(rs.getInt(1) + "  " + rs.getString(2));
+            }
+            con.close();
+        } else {
+            System.out.println("Could not connect!");
+        }
     }
 }

@@ -12,7 +12,8 @@ ext {
     ]
 
     misc = [
-            log4j: "org.apache.logging.log4j:log4j-core:$log4jVersion"
+            log4j: "org.apache.logging.log4j:log4j-core:$log4jVersion",
+            mysql: "mysql:mysql-connector-java:8.0.11"
     ]
 }
 
