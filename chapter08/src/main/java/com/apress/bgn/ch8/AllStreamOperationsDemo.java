@@ -43,7 +43,7 @@ import java.util.stream.Stream;
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class MediaStreamTester {
+public class AllStreamOperationsDemo {
     public static void main(String... args) {
         Stream<Song> songs = StreamMediaLoader.loadSongs();
         System.out.println("----- forEach -----");
@@ -76,14 +76,51 @@ public class MediaStreamTester {
         System.out.println(processList(testList));
 
         System.out.println("----- sorted -----");
-        List<String> pieces = List.of("some","of", "us", "we're", "hardly", "ever", "here");
+        List<String> pieces = List.of("some", "of", "us", "we're", "hardly", "ever", "here");
         String first = pieces.stream().sorted().findFirst().get();
         System.out.println("First from sorted list: " + first);
 
         System.out.println("----- distinct -----");
-        pieces = List.of("as","long", "as", "there", "is", "you", "there", "is", "me");
+        pieces = List.of("as", "long", "as", "there", "is", "you", "there", "is", "me");
         long count = pieces.stream().distinct().count();
         System.out.println("Elements in the stream: " + count);
+
+        System.out.println("----- limit, min, max -----");
+        Stream<Integer> ints = Stream.of(5, 2, 7, 9, 8, 1, 12, 7, 2);
+        ints.limit(4).min(Integer::compareTo).ifPresent(min -> System.out.println("Min is: " + min));
+
+        ints = Stream.of(5, 2, 7, 9, 8, 1, 12, 7, 2);
+        ints.limit(4).max(Integer::compareTo).ifPresent(max -> System.out.println("Max is: " + max));
+
+        System.out.println("----- reduce, sum -----");
+        songs = StreamMediaLoader.loadSongs();
+        int totalDuration = songs
+                .mapToInt(Song::getDuration)
+                .sum();
+        System.out.println("Total duration without reduce:" + totalDuration);
+
+        songs = StreamMediaLoader.loadSongs();
+        totalDuration = songs
+                .mapToInt(Song::getDuration)
+                .reduce(
+                        0, (a, b) -> a + b);
+        System.out.println("Total duration with reduce:" + totalDuration);
+
+        System.out.println("----- takeWhile  ordered -----");
+        Stream<Integer> forTaking = Stream.of( 3, 6, 9, 11, 12, 13, 15);
+        forTaking.takeWhile(s -> s % 3 == 0 ).forEach(s -> System.out.print(s + " "));
+
+        System.out.println("\n----- takeWhile  non-ordered -----");
+        forTaking = Stream.of( 3, 6, 9, 2, 4, 8, 12, 36, 18, 42, 11, 13, 15);
+        forTaking.takeWhile(s -> s % 3 == 0 ).forEach(s -> System.out.print(s + " "));
+
+        System.out.println("\n----- dropWhile  ordered -----");
+        Stream<Integer> forDropping = Stream.of( 3, 6, 9, 11, 12, 13, 15);
+        forDropping.dropWhile(s -> s % 3 == 0 ).forEach(s -> System.out.print(s + " "));
+
+        System.out.println("\n----- dropWhile  non-ordered -----");
+        forDropping = Stream.of( 3, 2, 9, 6, 4, 8, 12, 36, 18, 42, 11, 13, 15);
+        forDropping.dropWhile(s -> s % 3 == 0 ).forEach(s -> System.out.print(s + " "));
     }
 
     public static List<Integer> processList(List<List<Integer>> list) {

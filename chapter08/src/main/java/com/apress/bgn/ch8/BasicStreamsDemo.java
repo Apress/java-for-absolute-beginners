@@ -44,7 +44,7 @@ import java.util.stream.Stream;
  */
 public class BasicStreamsDemo {
     public static void main(String... args) throws Exception {
-        List<Integer> bigList = List.of(50, 10, 250, 100, 23, 45, 33, 55, 67, 83, 90, 92, 94, 74, 200, 40052, 3467, 125);
+        var bigList = List.of(50, 10, 250, 100, 23, 45, 33, 55, 67, 83, 90, 92, 94, 74, 200, 40052, 3467, 125);
 
 
         bigList.stream()
@@ -56,17 +56,17 @@ public class BasicStreamsDemo {
                 .forEach(i -> System.out.println(Thread.currentThread().getName() + ": " + i));
 
         System.out.println("----- builder() -----");
-        Stream<Integer> built = Stream.<Integer>builder().add(50).add(10).add(250).build();
+        var built = Stream.<Integer>builder().add(50).add(10).add(250).build();
         built.forEach(System.out::println);
 
         System.out.println("----- generated() -----");
-        Stream<Integer> generated = Stream.generate(
+        var generated = Stream.generate(
                 () -> new Random().nextInt(300) + 1
         ).limit(5);
         generated.forEach(System.out::println);
 
         System.out.println("----- iterate() -----");
-        Stream<Integer> iterated = Stream.iterate(0, i -> i < 50, i -> i + 5);
+        var iterated = Stream.iterate(0, i -> i < 50, i -> i + 5);
         //Stream<Integer> iterated = Stream.iterate(0, i -> i + 5).limit(15);
         iterated.forEach(System.out::println);
 
@@ -83,7 +83,7 @@ public class BasicStreamsDemo {
         intStream.forEach(System.out::println);
 
         System.out.println("----- random.ints -----");
-        Random random = new Random();
+        var random = new Random();
         intStream = random.ints(5);
         intStream.forEach(System.out::println);
 
@@ -96,16 +96,16 @@ public class BasicStreamsDemo {
         intStream.forEach(c -> System.out.println((char) c));
 
         System.out.println("----- charStream of String -----");
-        IntStream charStream = "sample".chars();
+        var charStream = "sample".chars();
         charStream.forEach(c -> System.out.println((char) c));
 
         System.out.println("----- LongStream -----");
-        LongStream longStream = LongStream.range(0, 10);
+        var longStream = LongStream.range(0, 10);
         longStream.forEach(System.out::println);
 
 
         System.out.println("----- DoubleStream.of -----");
-        DoubleStream doubleStream = DoubleStream.of(1, 2, 2.3, 3.4, 4.5, 6);
+        var doubleStream = DoubleStream.of(1, 2, 2.3, 3.4, 4.5, 6);
         doubleStream.forEach(System.out::println);
 
         System.out.println("----- DoubleStream.doubles -----");
@@ -117,11 +117,11 @@ public class BasicStreamsDemo {
         doubleStream.forEach(System.out::println);
 
         System.out.println("----- stringStream -----");
-        Stream<String> stringStream = Pattern.compile(" ").splitAsStream("live your life");
+        var stringStream = Pattern.compile(" ").splitAsStream("live your life");
         stringStream.forEach(System.out::println);
 
         System.out.println("----- stringStream from File -----");
-        String inputPath = "chapter08/src/main/resources/songs.csv";
+        var inputPath = "chapter08/src/main/resources/songs.csv";
         stringStream = Files.lines(Path.of(inputPath));
         stringStream.forEach(System.out::println);
 

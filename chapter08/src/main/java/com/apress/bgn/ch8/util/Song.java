@@ -30,12 +30,14 @@ package com.apress.bgn.ch8.util;
 import net.sf.jsefa.csv.annotation.CsvDataType;
 import net.sf.jsefa.csv.annotation.CsvField;
 
+import java.util.Objects;
+
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
 @CsvDataType
-public class Song {
+public class Song implements Comparable<Song> {
     /**
      * unique identifier in the media library
      */
@@ -107,5 +109,27 @@ public class Song {
 
     public void setAudioType(AudioType audioType) {
         this.audioType = audioType;
+    }
+
+    @Override
+    public int compareTo(Song o) {
+        return this.getTitle().compareTo(o.getTitle());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song = (Song) o;
+        return Objects.equals(id, song.id) &&
+                Objects.equals(singer, song.singer) &&
+                Objects.equals(title, song.title) &&
+                Objects.equals(duration, song.duration) &&
+                audioType == song.audioType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, singer, title, duration, audioType);
     }
 }

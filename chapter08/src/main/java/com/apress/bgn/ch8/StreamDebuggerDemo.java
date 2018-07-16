@@ -25,27 +25,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.apress.bgn.ch8.util;
+package com.apress.bgn.ch8;
+
+import com.apress.bgn.ch8.util.Song;
+import com.apress.bgn.ch8.util.SongTransformer;
+import com.apress.bgn.ch8.util.StreamMediaLoader;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Iuliana Cosmina
  * since 1.0
  */
-public class SongTransformer {
-    public static int processDuration(Song song) {
-        int secs = song.getDuration();
-        return secs/60;
-    }
-
-    public static Song turnDurationToMinutes(Song song) {
-        int secs = song.getDuration();
-        song.setDuration(secs/60);
-        return song;
-    }
-
-    public static Song upcaseTitle(Song song) {
-        String title = song.getTitle();
-        song.setTitle(title.toUpperCase());
-        return song;
+public class StreamDebuggerDemo {
+    public static void main(String... args) {
+        Stream<Song> songs = StreamMediaLoader.loadSongs();
+        songs
+                .map(SongTransformer::upcaseTitle)
+                .map(SongTransformer::processDuration)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList())
+                  .forEach(System.out::println);
     }
 }

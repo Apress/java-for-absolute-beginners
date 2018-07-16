@@ -45,12 +45,5 @@ public class IntroductoryMain {
 
     }
 
-    public static Stream<Song> asStream(List<Song> inputList) {
-        if (inputList == null || inputList.isEmpty()) {
-            return Stream.empty();
-        } else {
-            return inputList.stream();
-        }
-    }
 
 }

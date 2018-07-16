@@ -60,7 +60,12 @@ public class OptionalDemo {
         }
 
         Optional<Song> opt = songs.stream().filter(ss -> "B.B. King".equals(ss.getSinger())).findFirst();
-        opt.ifPresent(r -> System.out.println("Good stuff!"));
+        opt.ifPresent(r -> System.out.println(r.getTitle()));
+        if(opt.isEmpty()) {
+            System.out.println("Not found!");
+        }
+        System.out.println("---- ifPresentOrElse -----");
+        opt.ifPresentOrElse(r -> System.out.println(r.getTitle()), () -> System.out.println("Not found!")) ;
 
         Optional<Song> opt2 = songs.stream().filter(ss -> "Rob Thomas".equals(ss.getSinger())).findFirst();
         System.out.println("Found Song " + opt2.get());
