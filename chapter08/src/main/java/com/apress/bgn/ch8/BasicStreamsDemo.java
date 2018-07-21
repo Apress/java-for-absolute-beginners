@@ -44,7 +44,7 @@ import java.util.stream.Stream;
  */
 public class BasicStreamsDemo {
     public static void main(String... args) throws Exception {
-        var bigList = List.of(50, 10, 250, 100, 23, 45, 33, 55, 67, 83, 90, 92, 94, 74, 200, 40052, 3467, 125);
+        List<Integer> bigList = List.of(50, 10, 250, 100, 23, 45, 33, 55, 67, 83, 90, 92, 94, 74, 200, 40052, 3467, 125);
 
 
         bigList.stream()
@@ -56,17 +56,17 @@ public class BasicStreamsDemo {
                 .forEach(i -> System.out.println(Thread.currentThread().getName() + ": " + i));
 
         System.out.println("----- builder() -----");
-        var built = Stream.<Integer>builder().add(50).add(10).add(250).build();
+        Stream<Integer> built = Stream.<Integer>builder().add(50).add(10).add(250).build();
         built.forEach(System.out::println);
 
         System.out.println("----- generated() -----");
-        var generated = Stream.generate(
+        Stream<Integer> generated = Stream.generate(
                 () -> new Random().nextInt(300) + 1
         ).limit(5);
         generated.forEach(System.out::println);
 
         System.out.println("----- iterate() -----");
-        var iterated = Stream.iterate(0, i -> i < 50, i -> i + 5);
+        Stream<Integer> iterated = Stream.iterate(0, i -> i < 50, i -> i + 5);
         //Stream<Integer> iterated = Stream.iterate(0, i -> i + 5).limit(15);
         iterated.forEach(System.out::println);
 
@@ -83,7 +83,7 @@ public class BasicStreamsDemo {
         intStream.forEach(System.out::println);
 
         System.out.println("----- random.ints -----");
-        var random = new Random();
+        Random random = new Random();
         intStream = random.ints(5);
         intStream.forEach(System.out::println);
 
@@ -96,16 +96,16 @@ public class BasicStreamsDemo {
         intStream.forEach(c -> System.out.println((char) c));
 
         System.out.println("----- charStream of String -----");
-        var charStream = "sample".chars();
+        IntStream charStream = "sample".chars();
         charStream.forEach(c -> System.out.println((char) c));
 
         System.out.println("----- LongStream -----");
-        var longStream = LongStream.range(0, 10);
+        LongStream longStream = LongStream.range(0, 10);
         longStream.forEach(System.out::println);
 
 
         System.out.println("----- DoubleStream.of -----");
-        var doubleStream = DoubleStream.of(1, 2, 2.3, 3.4, 4.5, 6);
+        DoubleStream doubleStream = DoubleStream.of(1, 2, 2.3, 3.4, 4.5, 6);
         doubleStream.forEach(System.out::println);
 
         System.out.println("----- DoubleStream.doubles -----");
@@ -117,16 +117,18 @@ public class BasicStreamsDemo {
         doubleStream.forEach(System.out::println);
 
         System.out.println("----- stringStream -----");
-        var stringStream = Pattern.compile(" ").splitAsStream("live your life");
+        Stream<String> stringStream = Pattern.compile(" ").splitAsStream("live your life");
         stringStream.forEach(System.out::println);
 
-        System.out.println("----- stringStream from File -----");
-        var inputPath = "chapter08/src/main/resources/songs.csv";
+
+        //decomment this when Gradle works with Java 11
+       /* System.out.println("----- stringStream from File -----");
+        String inputPath = "chapter08/src/main/resources/songs.csv";
         stringStream = Files.lines(Path.of(inputPath));
         stringStream.forEach(System.out::println);
 
         System.out.println("----- stringStream from File -----");
         stringStream = Files.lines(Path.of(inputPath), Charset.forName("UTF-8"));
-        stringStream.forEach(System.out::println);
+        stringStream.forEach(System.out::println);*/
     }
 }

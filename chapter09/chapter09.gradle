@@ -2,10 +2,6 @@ buildscript {
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath "org.junit.platform:junit-platform-gradle-plugin:$junit5PluginVersion"
-    }
-
 }
 
 group 'com.apress.bgn.ch9'
@@ -13,10 +9,9 @@ ext.moduleName = 'chapter.nine'
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'org.junit.platform.gradle.plugin'
 
 dependencies {
-    testImplementation testing.junit
+    testRuntime testing.launcher, testing.jupiter, testing.vintage
 }
 
 jar {
@@ -27,6 +22,19 @@ jar {
                 "Implementation-Version": version,
                 "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
         )
+    }
+}
+
+tasks.withType(Javadoc) {
+    options {
+        locale 'en'
+        encoding 'UTF-8'
+        links 'https://docs.oracle.com/javase/10/docs/api/'
+        delegate.use()
+        version()
+        author()
+        splitIndex()
+        addBooleanOption 'html5', true
     }
 }
 

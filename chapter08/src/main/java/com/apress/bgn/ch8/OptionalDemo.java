@@ -61,9 +61,10 @@ public class OptionalDemo {
 
         Optional<Song> opt = songs.stream().filter(ss -> "B.B. King".equals(ss.getSinger())).findFirst();
         opt.ifPresent(r -> System.out.println(r.getTitle()));
-        if(opt.isEmpty()) {
+        //decomment this when gradle works with Java 11
+        /*if(opt.isEmpty()) {
             System.out.println("Not found!");
-        }
+        }*/
         System.out.println("---- ifPresentOrElse -----");
         opt.ifPresentOrElse(r -> System.out.println(r.getTitle()), () -> System.out.println("Not found!")) ;
 
