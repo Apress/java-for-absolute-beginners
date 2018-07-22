@@ -27,7 +27,7 @@ SOFTWARE.
 */
 package com.apress.bgn.ch9.algs;
 
-import java.util.Arrays;
+import java.util.logging.Logger;
 
 /**
  * The <code>MergeSort</code> class contains a single method that is a concrete implementation of {@link IntSorter#sort(int[], int, int)}.<p>
@@ -38,7 +38,7 @@ import java.util.Arrays;
  * @see IntSorter
  */
 public class MergeSort implements IntSorter {
-    private static int callNumber = 0;
+    private static final Logger log = Logger.getLogger(MergeSort.class.getName());
 
     /**
      * Sorts <code>arr</code> using the MergeSort algorithm.<p>
@@ -46,11 +46,14 @@ public class MergeSort implements IntSorter {
      * <a href="https://youtu.be/XaqR3G_NVoo" target="_blank"> How it works</a>
      */
     public void sort(int[] arr, int low, int high) {
-        System.out.print("Call sort of " + ": [" + low + " " + high + "] ");
+        StringBuilder sb = new StringBuilder("Call sort of ")
+                .append(": [")
+                    .append(low).append(" ").append(high)
+                .append("] ");
         for (int i = low; i <= high; ++i) {
-            System.out.print(arr[i] + " ");
+            sb.append(arr[i]).append(" ");
         }
-        System.out.println();
+        log.info(sb.toString());
 
         if (low < high) {
 
@@ -106,11 +109,12 @@ public class MergeSort implements IntSorter {
             j++;
             k++;
         }
-        System.out.print("Called merge of: [" + low + " " + high + " " + middle + "], ");
+        StringBuilder sb = new StringBuilder("Called merge of: [")
+                    .append(low).append(" ").append(high).append(" ").append(middle)
+                .append("],) ");
         for (int z = low; z <= high; ++z) {
-            System.out.print(arr[z] + " ");
+            sb.append(arr[z]).append(" ");
         }
-        System.out.println();
+        log.info(sb.toString());
     }
-
 }
