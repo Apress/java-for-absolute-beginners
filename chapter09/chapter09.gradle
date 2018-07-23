@@ -4,81 +4,71 @@ buildscript {
     }
 }
 
-group 'com.apress.bgn.ch9'
-ext.moduleName = 'chapter.nine'
+subprojects {
+    group 'com.apress.bgn.ch9'
 
-apply plugin: 'java'
-apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'idea'
 
-dependencies {
-    compile misc.json
-    testRuntime testing.launcher, testing.jupiter, testing.vintage
-}
-
-jar {
-    manifest {
-        attributes(
-                "Created-By": System.getProperty('java.version'),
-                "Specification-Title": "Java for Absolute Beginners",
-                "Implementation-Version": version,
-                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
-        )
-    }
-}
-
-tasks.withType(Javadoc) {
-    options {
-        locale 'en'
-        encoding 'UTF-8'
-        links 'https://docs.oracle.com/javase/10/docs/api/'
-        delegate.use()
-        version()
-        author()
-        splitIndex()
-        addBooleanOption 'html5', true
-    }
-}
-
-afterEvaluate {
-    repositories {
-        jcenter()
+    dependencies {
+        compile misc.slf4j, misc.logback
+        testRuntime testing.launcher, testing.jupiter, testing.vintage
     }
 
-    compileJava {
-        inputs.property("moduleName", moduleName)
-        doFirst {
-            options.compilerArgs = [
-                    '-proc:none',
-                    '--module-path', classpath.asPath,
-            ]
-            classpath = files()
+    tasks.withType(Javadoc) {
+        options {
+            locale 'en'
+            encoding 'UTF-8'
+            links 'https://docs.oracle.com/javase/10/docs/api/'
+            delegate.use()
+            version()
+            author()
+            splitIndex()
+            addBooleanOption 'html5', true
         }
     }
 
-    compileTestJava {
-        inputs.property("moduleName", moduleName)
-        doFirst {
-            options.compilerArgs = [
-                    '-proc:none',
-                    '--module-path', classpath.asPath,
-                    '--add-modules', 'org.junit.jupiter.engine',
-                    '--add-reads', "$moduleName=org.junit.jupiter.engine",
-                    '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
-            ]
-            classpath = files()
+    afterEvaluate {
+        repositories {
+            jcenter()
         }
-    }
 
-    test {
-        inputs.property("moduleName", moduleName)
-        doFirst {
-            jvmArgs = [
-                    '--module-path', classpath.asPath,
-                    '--add-modules', 'ALL-MODULE-PATH',
-                    '--add-reads', "$moduleName=junit",
-                    '--patch-module', "$moduleName=" + files(sourceSets.test.java.outputDir).asPath,
-            ]
-            classpath = files()
+        compileJava {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                options.compilerArgs = [
+                        '-proc:none',
+                        '--module-path', classpath.asPath,
+                ]
+                classpath = files()
+            }
+        }
+
+        compileTestJava {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                options.compilerArgs = [
+                        '-proc:none',
+                        '--module-path', classpath.asPath,
+                        '--add-modules', 'org.junit.jupiter.engine',
+                        '--add-reads', "$moduleName=org.junit.jupiter.engine",
+                        '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
+                ]
+                classpath = files()
+            }
+        }
+
+        test {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                jvmArgs = [
+                        '--module-path', classpath.asPath,
+                        '--add-modules', 'ALL-MODULE-PATH',
+                        '--add-reads', "$moduleName=junit",
+                        '--patch-module', "$moduleName=" + files(sourceSets.test.java.outputDir).asPath,
+                ]
+                classpath = files()
+            }
         }
     }
 }
