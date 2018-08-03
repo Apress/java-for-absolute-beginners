@@ -15,9 +15,11 @@ include 'chapter05:collections'
 include 'chapter06'
 include 'chapter07'
 include 'chapter08'
-include 'chapter09'
 include 'chapter09:logging-jul'
 include 'chapter09:logging-slf4j'
+include 'chapter09:processapi'
+include 'chapter09:testing'
+
 include 'chapter10'
 
 include 'chapter11:read-write-file'
@@ -37,3 +39,4 @@ rootProject.children.each { project ->
     assert project.buildFile.exists()
     assert project.buildFile.isFile()
 }
+

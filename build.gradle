@@ -12,7 +12,6 @@ ext {
 
     testing = [
             jupiter : "org.junit.jupiter:junit-jupiter-engine:$junit5Version",
-            vintage : "org.junit.vintage:junit-vintage-engine:$junit5Version",
             launcher: "org.junit.platform:junit-platform-launcher:$junit5LauncherVersion"
     ]
 
@@ -22,7 +21,8 @@ ext {
             log4j: "org.apache.logging.log4j:log4j-core:$log4jVersion",
             logback: "ch.qos.logback:logback-classic:$logbackVersion",
             mysql: "mysql:mysql-connector-java:8.0.11",
-            jsefa: "net.sf.jsefa:jsefa:1.1.1.RELEASE"
+            jsefa: "net.sf.jsefa:jsefa:1.1.1.RELEASE",
+            derby :"org.apache.derby:derby:10.14.2.0"
     ]
 }
 

@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+}
+
+ext.moduleName = 'chapter.nine.processapi'
+
+dependencies {
+    compile project(':chapter09:logging-jul')
+}
+
+jar {
+    manifest {
+        attributes(
+                "Created-By": System.getProperty('java.version'),
+                "Specification-Title": "Java for Absolute Beginners",
+                "Main-Class": "com.apress.bgn.ch9.ProcessDemo",
+                "Implementation-Version": version,
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}

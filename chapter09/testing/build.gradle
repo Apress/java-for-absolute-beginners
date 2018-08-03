@@ -1,0 +1,29 @@
+plugins {
+    id 'java-library'
+}
+
+ext.moduleName = 'chapter.nine.testing'
+
+dependencies {
+    compile misc.derby
+    testCompile testing.launcher, testing.jupiter
+    testRuntime testing.launcher, testing.jupiter
+}
+
+//because Gradle is an idiot
+test {
+    exclude 'module-info.class'
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                "Created-By": System.getProperty('java.version'),
+                "Specification-Title": "Java for Absolute Beginners",
+                "Main-Class": "com.apress.bgn.ch9.ProcessDemo",
+                "Implementation-Version": version,
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}

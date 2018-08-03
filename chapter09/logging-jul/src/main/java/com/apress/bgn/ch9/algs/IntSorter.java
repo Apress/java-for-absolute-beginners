@@ -1,18 +1,19 @@
 package com.apress.bgn.ch9.algs;
 
 /**
- * Interface <code>IntSorter</code> is an interface that needs to be implemented by classes
- * that provide a method to sort an array of <code>int</code> values. <p>
+ * Interface {@code IntSorter} is an interface that needs to be implemented
+ * by classes that provide a method to sort an array of {@code int} values. <p>
  *
- * <code>int[]</code> was chosen as a type because this type of values are always sortable.
+ * {@code int[]} was chosen as a type because this type
+ * of values are always sortable. ({@link Comparable})
  *
  * @author Iuliana Cosmina
- * since 1.0
+ * @since 1.0
  */
 public interface IntSorter {
 
     /**
-     * Sorts <code>arr</code>
+     * Sorts {@code arr}
      *
      * @param arr int array to be sorted
      * @param low lower limit of the interval to be sorted
@@ -31,4 +32,5 @@ public interface IntSorter {
     default void sort(int[] arr) {
         System.out.println("Do not use this! This is deprecated!!");
     }
+
 }

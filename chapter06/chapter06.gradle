@@ -12,7 +12,6 @@ apply plugin: 'idea'
 
 dependencies {
     compile project(':chapter04')
-    testRuntime testing.launcher, testing.jupiter, testing.vintage
 }
 
 jar {
@@ -37,33 +36,6 @@ afterEvaluate {
             options.compilerArgs = [
                     '-proc:none',
                     '--module-path', classpath.asPath,
-            ]
-            classpath = files()
-        }
-    }
-
-    compileTestJava {
-        inputs.property("moduleName", moduleName)
-        doFirst {
-            options.compilerArgs = [
-                    '-proc:none',
-                    '--module-path', classpath.asPath,
-                    '--add-modules', 'org.junit.jupiter.engine',
-                    '--add-reads', "$moduleName=org.junit.jupiter.engine",
-                    '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath,
-            ]
-            classpath = files()
-        }
-    }
-
-    test {
-        inputs.property("moduleName", moduleName)
-        doFirst {
-            jvmArgs = [
-                    '--module-path', classpath.asPath,
-                    '--add-modules', 'ALL-MODULE-PATH',
-                    '--add-reads', "$moduleName=junit",
-                    '--patch-module', "$moduleName=" + files(sourceSets.test.java.outputDir).asPath,
             ]
             classpath = files()
         }

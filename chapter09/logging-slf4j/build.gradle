@@ -9,7 +9,6 @@ jar {
         attributes(
                 "Created-By": System.getProperty('java.version'),
                 "Specification-Title": "Java for Absolute Beginners",
-                "Main-Class": "com.apress.bgn.ch5.CollectionsDemo",
                 "Implementation-Version": version,
                 "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
         )
