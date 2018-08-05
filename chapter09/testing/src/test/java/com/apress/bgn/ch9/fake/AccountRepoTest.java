@@ -27,53 +27,100 @@ SOFTWARE.
 */
 package com.apress.bgn.ch9.fake;
 
+import com.apress.bgn.ch9.Account;
+import com.apress.bgn.ch9.db.DbConnection;
+import com.apress.bgn.ch9.fake.db.FakeDBConnection;
+import com.apress.bgn.ch9.repo.AccountRepo;
+import com.apress.bgn.ch9.repo.AccountRepoImpl;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
+ * Unfortunately, our Repo class is too well designed to actually get an exception, thus we cannot test for that.
  * @author Iuliana Cosmina
  * @since 1.0
  */
 public class AccountRepoTest {
     private static final Logger log = LoggerFactory.getLogger(AccountRepoTest.class);
+    private static DbConnection conn;
+
+    private AccountRepo repo;
 
     @BeforeAll
-    public static void loadCtx() {
-        log.info("Loading general test context.");
+    public static void prepare() {
+        conn = new FakeDBConnection();
     }
 
     @BeforeEach
-    public  void setUp(){
-        log.info("Prepare  single test context.");
-    }
+    public void setUp(){
+        repo = new AccountRepoImpl(conn);
 
-    @Test
-    @DisplayName("test one")
-    public void testOne() {
-        log.info("Executing test one.");
-        assertTrue(true);
-    }
-
-    @Test
-    @DisplayName("test two")
-    public void testTwo() {
-        log.info("Executing test two.");
-        assertFalse(false);
+        // inserting an entry so we can test update/findOne
+        repo.save(new Account("Pedala", 200, "2345"));
     }
 
     @AfterEach
     public void tearDown(){
-        log.info("Destroy  single test context.");
+        // delete the entry
+        repo.deleteByHolder("Pedala");
     }
 
+    @Test
+    public void testFindOneExisting(){
+        Optional<Account> expected = repo.findOne("Pedala");
+        assertTrue(expected.isPresent());
+    }
+
+    @Test
+    public void testFindOneNonExisting(){
+        Optional<Account> expected = repo.findOne("Dorel");
+        assertFalse(expected.isPresent());
+    }
+
+    @Test
+    public void testFindAll(){
+        assertEquals(1, repo.findAll().size());
+    }
+
+    @Test
+    public void testInsert(){
+        Account expected = new Account("Gigi", 100, "12345");
+        Account actual = repo.save(expected);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testUpdate(){
+        Account existing = conn.findByHolder("Pedala");
+        int originalSum = existing.getSum();
+        existing.setSum(originalSum - 50);
+        Account actual = repo.save(existing);
+
+        assertEquals(existing.getSum(),actual.getSum());
+    }
+
+    @Test
+    public void testDeleteExisting(){
+        assertEquals( 0, repo.deleteByHolder("Pedala"));
+    }
+
+    @Test
+    public void testDeleteNonExisting(){
+        assertEquals( 1, repo.deleteByHolder("NotExisting"));
+    }
 
     @AfterAll
-    public static void unloadCtx(){
-        log.info("UnLoading general test context.");
+    public static void cleanUp(){
+        conn = null;
+        log.info("All done!");
     }
 
 }

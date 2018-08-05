@@ -25,18 +25,47 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-package com.apress.bgn.ch9.service;
+package com.apress.bgn.ch9.service.stub;
+
+import com.apress.bgn.ch9.Account;
+import com.apress.bgn.ch9.repo.AccountRepo;
+import com.apress.bgn.ch9.service.AccountCreationException;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Iuliana Cosmina
  * @since 1.0
  */
-public class AccountException extends RuntimeException {
-    public AccountException(String message) {
-        super(message);
+public class AccountRepoStub implements AccountRepo {
+
+    private Integer option = 0;
+
+    public synchronized void set(int val) {
+        option = val;
     }
 
-    public AccountException(String message, Throwable cause) {
-        super(message, cause);
+    @Override
+    public Account save(Account account) {
+        return account;
+    }
+
+    @Override
+    public Optional<Account> findOne(String holder) {
+        if (option == 0) {
+            return Optional.of(new Account(holder, 100, "22446677"));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Account> findAll() {
+        return List.of(new Account("sample", 100, "22446677"));
+    }
+
+    @Override
+    public int deleteByHolder(String holder) {
+        return option;
     }
 }

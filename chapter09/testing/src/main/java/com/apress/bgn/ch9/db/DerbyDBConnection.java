@@ -157,7 +157,7 @@ public class DerbyDBConnection implements DbConnection{
                     + " where holder='" + holder + "'");
             stmt.close();
         } catch (SQLException e) {
-            log.error("Could not update !", e);
+            log.error("Could not delete !", e);
             throw new DBException("Could not delete account of holder " + holder, e);
         }
     }

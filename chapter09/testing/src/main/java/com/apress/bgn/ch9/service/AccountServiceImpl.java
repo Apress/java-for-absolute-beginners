@@ -50,13 +50,17 @@ public class AccountServiceImpl implements AccountService {
         try {
             intAmount = Integer.parseInt(amount);
         } catch (NumberFormatException nfe) {
-            throw new AccountException("could not create account with invalid amount!");
+            throw new InvalidDataException("Could not create account with invalid amount!");
         }
 
-        if (accountNumber == null || accountNumber.isEmpty() || accountNumber.length() < 5) {
-            throw new AccountException("Could not create account with invalid account number!");
+        if (accountNumber == null || accountNumber.isEmpty() || accountNumber.length() < 5 || intAmount < 0) {
+            throw new InvalidDataException("Could not create account with invalid account number!");
         }
 
+        Optional<Account> existing = repo.findOne(holder);
+        if (existing.isPresent()) {
+            throw new AccountCreationException("Account already exists for holder " + holder);
+        }
         Account acc = new Account(holder, intAmount, accountNumber);
         return repo.save(acc);
     }
@@ -70,7 +74,7 @@ public class AccountServiceImpl implements AccountService {
             repo.save(acc);
             return acc.getSum();
         } else {
-            throw new AccountException("Account for holder " + holder + " does not exist!");
+            throw new InvalidDataException("Account for holder " + holder + " does not exist!");
         }
     }
 
@@ -83,7 +87,7 @@ public class AccountServiceImpl implements AccountService {
             repo.save(acc);
             return acc.getSum();
         } else {
-            throw new AccountException("Account for holder " + holder + " does not exist!");
+            throw new InvalidDataException("Account for holder " + holder + " does not exist!");
         }
     }
 

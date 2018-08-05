@@ -31,7 +31,6 @@ import com.apress.bgn.ch9.Account;
 import com.apress.bgn.ch9.db.DBException;
 import com.apress.bgn.ch9.db.DbConnection;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

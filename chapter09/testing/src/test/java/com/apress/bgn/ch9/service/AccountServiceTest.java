@@ -27,9 +27,12 @@ SOFTWARE.
 */
 package com.apress.bgn.ch9.service;
 
-import org.junit.jupiter.api.Test;
+import com.apress.bgn.ch9.Account;
+import com.apress.bgn.ch9.service.stub.AccountRepoStub;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 /**
@@ -38,10 +41,104 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class AccountServiceTest {
 
-    @Test
-    public void one() {
-        assertTrue(true);
+    private static AccountRepoStub repo;
+    private AccountService service;
+
+    @BeforeAll
+    public static void prepare() {
+        repo = new AccountRepoStub();
     }
 
+    @BeforeEach
+    public void setUp() {
+        service = new AccountServiceImpl(repo);
+    }
+
+    @Test
+    public void testNonNumericAmountVersionOne() {
+        assertThrows(InvalidDataException.class,
+                () -> {
+                    service.createAccount("Gigi", "223311", "2I00");
+                });
+    }
+
+    @Test
+    public void testNonNumericAmountVersionTwo() {
+        InvalidDataException expected = assertThrows(
+                InvalidDataException.class, () -> {
+                    service.createAccount("Gigi", "223311", "2I00");
+                }
+        );
+        assertEquals("Could not create account with invalid amount!", expected.getMessage());
+    }
+
+    @Test
+    public void testEmptyAccountNumber() {
+        InvalidDataException expected = assertThrows(
+                InvalidDataException.class, () -> {
+                    service.createAccount("Gigi", "", "2100");
+                }
+        );
+        assertEquals("Could not create account with invalid account number!", expected.getMessage());
+    }
+
+    @Test
+    public void testNullAccountNumber() {
+        InvalidDataException expected = assertThrows(
+                InvalidDataException.class, () -> {
+                    service.createAccount("Gigi", null, "2100");
+                }
+        );
+        assertEquals("Could not create account with invalid account number!", expected.getMessage());
+    }
+
+    @Test
+    public void testInvalidAccountNumber() {
+        InvalidDataException expected = assertThrows(
+                InvalidDataException.class, () -> {
+                    service.createAccount("Gigi", "11", "2100");
+                }
+        );
+        assertEquals("Could not create account with invalid account number!", expected.getMessage());
+    }
+
+    @Test
+    public void testNegativeIntAmount() {
+        InvalidDataException expected = assertThrows(
+                InvalidDataException.class, () -> {
+                    service.createAccount("Gigi", "112233", "-2100");
+                }
+        );
+        assertEquals("Could not create account with invalid account number!", expected.getMessage());
+    }
+
+    @Test
+    public void testCreateAccount() {
+        repo.set(1);
+         Account expected = service.createAccount("Gigi", "112233", "2100");
+         assertEquals("Gigi", expected.getHolder());
+         assertEquals("112233", expected.getNumber());
+         assertEquals(2100, expected.getSum());
+    }
+
+    @Test
+    public void testCreateAccountAlreadyExists() {
+        AccountCreationException expected = assertThrows(
+                AccountCreationException.class, () -> {
+                    service.createAccount("Gigi", "112233", "2100");
+                }
+        );
+        assertEquals("Account already exists for holder Gigi", expected.getMessage());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        repo.set(0);
+    }
+
+    @AfterAll
+    public static void destroy() {
+        repo = null;
+    }
 
 }
