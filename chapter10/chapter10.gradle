@@ -17,6 +17,7 @@ jar {
                 "Created-By": System.getProperty('java.version'),
                 "Specification-Title": "Java for Absolute Beginners",
                 "Implementation-Version": version,
+                "Main-Class"         : "com.apress.bgn.ch10.ReadingFormStdinDemo",
                 "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
         )
     }
