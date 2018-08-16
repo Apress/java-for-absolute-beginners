@@ -27,9 +27,101 @@ SOFTWARE.
 */
 package com.apress.bgn.ch10;
 
+import java.awt.*;
+import java.awt.event.*;
+
 /**
  * @author Iuliana Cosmina
  * @since 1.0
  */
 public class AwtDemo {
+    private Frame frame;
+    private Label message;
+    private Label headerLabel;
+    private Label footerLabel;
+    private Panel controlPanel;
+    private Button button;
+    private List list;
+    private Panel listPanel;
+    private TextArea textArea;
+    private ScrollPane textPanel;
+
+    public static void main(String... args) {
+        AwtDemo awtDemo = new AwtDemo();
+        awtDemo.show();
+    }
+
+    public AwtDemo() {
+        frame = new Frame("Awt Demo Window");
+        frame.setSize(new Dimension(500,500));
+        frame.setLayout(new GridLayout (5,1));
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent windowEvent){
+                System.exit(0);
+            }
+        });
+
+        headerLabel = new Label();
+        headerLabel.setText("-- This is the header --");
+        headerLabel.setAlignment(Label.CENTER);
+
+        list = new List();
+        list.add("John Mayer", 0);
+        list.add("Frank Sinatra", 1);
+        list.add("Seth MacFarlane", 2);
+        list.add("Nina Simone", 3);
+        list.add("BB King", 4);
+        list.add("Peggy Lee", 5);
+
+        listPanel = new Panel();
+        listPanel.setLayout(new FlowLayout());
+        listPanel.add(list);
+        list.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    textArea.append(list.getSelectedItem() + "\n");
+                }
+            }
+        });
+
+
+        footerLabel = new Label();
+        footerLabel.setText("-- This is the footer --");
+        footerLabel.setAlignment(Label.CENTER);
+
+        message = new Label();
+        message.setAlignment(Label.CENTER);
+        message.setText("This is a simple AWT window.");
+
+        button= new Button("Bye Bye");
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        controlPanel = new Panel();
+        controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        controlPanel.add(button);
+
+        textArea = new TextArea(50,10);
+        textArea.setEditable(false);
+        textPanel = new ScrollPane();
+        textPanel.add(textArea);
+        Panel txtPane = new Panel();
+        txtPane.setLayout(new BorderLayout());
+//        txtPane.add(textPanel, BorderLayout.CENTER);
+        textArea.setBackground(Color.LIGHT_GRAY);
+
+        frame.add(headerLabel);
+        frame.add(listPanel);
+        frame.add(txtPane);
+        frame.add(controlPanel);
+        frame.add(footerLabel);
+    }
+
+    public void show(){
+        frame.setVisible(true);
+    }
 }
