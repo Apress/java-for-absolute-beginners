@@ -24,6 +24,7 @@ include 'chapter10:using-scanner'
 include 'chapter10:using-console'
 include 'chapter10:using-swing'
 include 'chapter10:using-javafx'
+include 'chapter10:web-app'
 
 include 'chapter11:read-write-file'
 include 'chapter11:serialization'
@@ -42,3 +43,4 @@ rootProject.children.each { project ->
     assert project.buildFile.exists()
     assert project.buildFile.isFile()
 }
+
