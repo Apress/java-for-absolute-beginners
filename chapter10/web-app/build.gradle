@@ -5,7 +5,7 @@ plugins {
 ext.moduleName = 'chapter.ten.web'
 
 dependencies {
-    compile tomcat.embedCore,tomcat.embedJasper, tomcat.embedLog4j
+    compile tomcat.embedCore,tomcat.embedJasper, tomcat.embedLog4j, tomcat.jstl, tomcat.taglibs
 }
 
 jar {

@@ -32,7 +32,9 @@ ext {
     tomcat = [
             embedCore :"org.apache.tomcat.embed:tomcat-embed-core:$tomcatVersion",
             embedJasper :"org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion",
-            embedLog4j :"org.apache.tomcat.embed:tomcat-embed-logging-log4j:$tomcatVersion"
+            embedLog4j :"org.apache.tomcat.embed:tomcat-embed-logging-log4j:$tomcatVersion",
+            jstl       : "jstl:jstl:1.2",
+            taglibs    : "taglibs:standard:1.1.2"
     ]
 }
 
