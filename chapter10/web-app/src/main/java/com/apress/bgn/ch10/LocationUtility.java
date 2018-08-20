@@ -27,39 +27,17 @@ SOFTWARE.
 */
 package com.apress.bgn.ch10;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.File;
 
 /**
  * @author Iuliana Cosmina
  * @since 1.0
  */
-@WebServlet(
-        name = "indexServlet",
-        urlPatterns = {"/"}
-)
-public class IndexServlet extends HttpServlet {
+public class LocationUtility {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        PrintWriter writer = response.getWriter();
-        response.setStatus(HttpServletResponse.SC_OK);
-        try (BufferedReader reader = new BufferedReader(
-                new FileReader("chapter10/web-app/src/main/resources/static/index.html"))) {
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                writer.println(line);
-            }
-        }
-        writer.flush();
-        writer.close();
+    public static File getRootFolder() throws Exception {
+        String executionPath = WebDemo.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().replaceAll("\\\\", "/");
+        int lastIndexOf = executionPath.lastIndexOf("/production/");
+        return lastIndexOf < 0 ? new File("") : new File(executionPath.substring(0, lastIndexOf));
     }
-
 }

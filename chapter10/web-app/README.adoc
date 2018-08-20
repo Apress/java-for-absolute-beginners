@@ -1,0 +1,10 @@
+== Web Application Demo
+
+This module is quite unstable as Tomcat 9 was not really supporting Java 9 very well when this code sample was written.
+This application was eventually compiled with Java 8, to make sure it is functional, but the module was taken out of the project,
+as it was not compiling with Java 9+.
+
+If you want to properly compile and run it, copy the web-app in a different location, replace build.gradle contens with
+build.gradle-independent, and use Java 8.
+
+If we are lucky and in works with Java 9+ by the time this book is released, the module will be added back to the project.

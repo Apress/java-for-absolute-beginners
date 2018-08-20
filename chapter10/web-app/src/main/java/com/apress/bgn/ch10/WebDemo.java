@@ -27,13 +27,17 @@ SOFTWARE.
 */
 package com.apress.bgn.ch10;
 
-import org.apache.catalina.Context;
 import org.apache.catalina.WebResourceRoot;
+import org.apache.catalina.WebResourceSet;
+import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.webresources.DirResourceSet;
+import org.apache.catalina.webresources.EmptyResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 
 import java.io.File;
+
+import static com.apress.bgn.ch10.LocationUtility.getRootFolder;
 
 /**
  * @author Iuliana Cosmina
@@ -42,22 +46,33 @@ import java.io.File;
 public class WebDemo {
 
     public static void main(String... args) throws Exception {
+        File root = getRootFolder();
         Tomcat tomcat = new Tomcat();
-        tomcat.setBaseDir("chapter10/web-app/out");
         tomcat.setPort(8080);
+        tomcat.setBaseDir(root.getAbsolutePath());
 
-        String contextPath = "/demo";
-        String docBase = new File(".").getAbsolutePath();
+        File webAppFolder = new File(root.getAbsolutePath(), "production/resources/dynamic");
+        if (!webAppFolder.exists()) {
+            System.err.println("Could not find JSP pages directory!");
+        }
+        StandardContext context = (StandardContext) tomcat.addWebapp("/demo", webAppFolder.getAbsolutePath());
+        context.setParentClassLoader(WebDemo.class.getClassLoader());
 
-        Context context = tomcat.addContext(contextPath, docBase);
-
-        File webClasses = new File("chapter10/web-app/build/classes");
+        File webInfClasses = new File(root.getAbsolutePath(), "production/classes");
         WebResourceRoot resources = new StandardRoot(context);
-        resources.addPreResources(new DirResourceSet(resources, "/WEB-INF/classes",
-                webClasses.getAbsolutePath(), "/"));
+        WebResourceSet resourceSet;
+
+        if (webInfClasses.exists()) {
+            resourceSet = new DirResourceSet(resources, "/WEB-INF/classes", webInfClasses.getAbsolutePath(), "/");
+        } else {
+            resourceSet = new EmptyResourceSet(resources);
+        }
+        resources.addPreResources(resourceSet);
         context.setResources(resources);
 
         tomcat.start();
         tomcat.getServer().await();
     }
+
+
 }
