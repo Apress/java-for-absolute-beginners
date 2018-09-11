@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BaseMultiResolutionImage;
 import java.awt.image.BufferedImage;
 import java.awt.image.MultiResolutionImage;
 import java.io.File;
@@ -77,7 +78,8 @@ public class MediaDemo {
     }
 
     private static void createMultiResImage(final File dest, final Image[] imgList) throws IOException {
-        MultiResolutionImage mrImage = new SmartMultiResolutionImage(0, imgList);
+        MultiResolutionImage mrImage = new BaseMultiResolutionImage(0,imgList);
+                //new SmartMultiResolutionImage(0, imgList);
 
         List<Image> variants = mrImage.getResolutionVariants();
 

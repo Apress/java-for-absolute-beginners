@@ -9,6 +9,9 @@ dependencies {
     compile misc.slf4j, misc.logback
     // using this jar build with JDK
     compile files('libs/commons-sanselan-1.0-SNAPSHOT.jar')
+    compile files('libs/javafx-base-11-ea+24-mac.jar')
+    compile files('libs/javafx-controls-11-ea+24-mac.jar')
+    compile files('libs/javafx-graphics-11-ea+24-mac.jar')
 }
 
 jar {
