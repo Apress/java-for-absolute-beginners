@@ -1,0 +1,19 @@
+{
+  "song": {
+    "title": "Vultures",
+    "singer": "John Mayer",
+    "writers": [
+      "John Mayer",
+      "Pino Palladino",
+      "Steven Jordan"
+    ],
+    "duration": "251",
+    "album": "Continuum",
+    "track_no": "6"
+  },
+  "album": {
+    "name": "Continuum",
+    "release_date": "2016",
+    "genre": "Alternative"
+  }
+}

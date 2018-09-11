@@ -5,5 +5,5 @@ module chapter.ten.javafx {
     requires javafx.base;
     requires javafx.graphics;
     requires javafx.controls;
-    exports com.apress.bgn.ch10;
+    opens com.apress.bgn.ch10 to javafx.graphics;
 }

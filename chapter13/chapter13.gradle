@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+group 'com.apress.bgn.ch13'
+ext.moduleName = 'chapter.thirteen'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+dependencies {
+    compile misc.logback, misc.slf4j
+}
+
+jar {
+    manifest {
+        attributes(
+                "Created-By": System.getProperty('java.version'),
+                "Specification-Title": "Java for Absolute Beginners",
+                "Implementation-Version": version,
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+        )
+    }
+}
+
+afterEvaluate {
+    repositories {
+        jcenter()
+    }
+
+    compileJava {
+        inputs.property("moduleName", moduleName)
+        doFirst {
+            options.compilerArgs = [
+                    '-proc:none',
+                    '--module-path', classpath.asPath,
+            ]
+            classpath = files()
+        }
+    }
+}

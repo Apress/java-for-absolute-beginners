@@ -1,8 +1,14 @@
 plugins {
     id 'java-library'
 }
-
 ext.moduleName = 'chapter.ten.javafx'
+
+
+dependencies{
+    compile files('libs/javafx-base-11-ea+24-mac.jar')
+    compile files('libs/javafx-controls-11-ea+24-mac.jar')
+    compile files('libs/javafx-graphics-11-ea+24-mac.jar')
+}
 
 jar {
     manifest {

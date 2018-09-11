@@ -4,26 +4,25 @@ buildscript {
     }
 }
 
-group 'com.apress.bgn.ch10'
-ext.moduleName = 'chapter.ten'
+subprojects {
+    group 'com.apress.bgn.ch10'
+    apply plugin: 'java'
+    apply plugin: 'idea'
 
-apply plugin: 'java'
-apply plugin: 'idea'
+    afterEvaluate {
+        repositories {
+            jcenter()
+        }
 
-
-afterEvaluate {
-    repositories {
-        jcenter()
-    }
-
-    compileJava {
-        inputs.property("moduleName", moduleName)
-        doFirst {
-            options.compilerArgs = [
-                    '-proc:none',
-                    '--module-path', classpath.asPath,
-            ]
-            classpath = files()
+        compileJava {
+            inputs.property("moduleName", moduleName)
+            doFirst {
+                options.compilerArgs = [
+                        '-proc:none',
+                        '--module-path', classpath.asPath,
+                ]
+                classpath = files()
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class CollectionsDemo {
 
-    public static void badList() {
+    private static void badList() {
         //before Java 1.5
         List objList = new ArrayList();
         objList.add("temp");
@@ -27,7 +27,7 @@ public class CollectionsDemo {
         }
     }
 
-    public static void goodList() {
+    private static void goodList() {
         //after Java 1.5 , diamond operator in Java 1.8
         List<String> stringList = new ArrayList<>();
         stringList.add("one");
@@ -39,7 +39,7 @@ public class CollectionsDemo {
         }
     }
 
-    public static void lambdaList() {
+    private static void lambdaList() {
         //factory methods since 9
         var stringList = List.of("one", "two", "three");
 
@@ -49,7 +49,7 @@ public class CollectionsDemo {
         stringList.forEach(System.out::println);
     }
 
-    public static void goodSet() {
+    private static void goodSet() {
         Set<String> StringSet = new HashSet<>();
         StringSet.add("one");
         StringSet.add("two");
@@ -60,7 +60,7 @@ public class CollectionsDemo {
         }
     }
 
-    public static void goodMap() {
+    private static void goodMap() {
         var stringMap = new HashMap<String, Integer>();
         stringMap.put(null, 0);
         stringMap.put("one", 1);
@@ -73,11 +73,11 @@ public class CollectionsDemo {
     }
 
 
-    public static void lambdaMap() {
-        Map<String, Integer> stringMap = Map.of("one", 1,"two", 2, "three", 3);
+    private static void lambdaMap() {
+        Map<String, Integer> stringMap = Map.of("one", 1, "two", 2, "three", 3);
 
         //stringMap.entrySet().forEach(e -> System.out.println(e.getKey() + ":  " + e.getValue()));
-        stringMap.forEach((k,v) ->  System.out.println(k + ":  " + v));
+        stringMap.forEach((k, v) -> System.out.println(k + ":  " + v));
     }
 
     public static void main(String... args) {

@@ -1,0 +1,11 @@
+song:
+  title:Vultures
+  singer:John Mayer
+  writers:John Mayer,Pino Palladino,Steven Jordan
+  song.duration:251
+  track_no:6
+  album:Continuum
+album:
+  name:Continuum
+  release_date:2016
+  genre:Alternative

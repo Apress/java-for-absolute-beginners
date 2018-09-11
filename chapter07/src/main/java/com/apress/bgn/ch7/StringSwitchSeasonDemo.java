@@ -39,7 +39,7 @@ public class StringSwitchSeasonDemo {
         var season = "";
         switch (a) {
             case "january":
-            case "feruary":
+            case "february":
             case "december":
                 season = "winter";
                 break;

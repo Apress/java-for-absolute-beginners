@@ -5,6 +5,12 @@ plugins {
 /* module with primitive types examples */
 ext.moduleName = 'chapter.eleven.media'
 
+dependencies {
+    compile misc.slf4j, misc.logback
+    // using this jar build with JDK
+    compile files('libs/commons-sanselan-1.0-SNAPSHOT.jar')
+}
+
 jar {
     manifest {
         attributes(

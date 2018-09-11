@@ -5,6 +5,13 @@ plugins {
 /* module with data structures */
 ext.moduleName = 'chapter.eleven.serialization'
 
+configurations {
+    all*.exclude group: "javax.activation", module: "activation"
+}
+dependencies {
+    compile misc.logback, misc.slf4j, misc.jaxb, misc.jaxbCore, misc.json
+}
+
 jar {
     manifest {
         attributes(

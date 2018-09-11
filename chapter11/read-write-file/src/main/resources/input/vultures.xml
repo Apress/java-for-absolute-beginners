@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns="http://johnmayer.com/">
+    <Song title="Vultures" singer="John Mayer" duration="251" track_no="6" album="Continuum">
+        <Writers>
+            <Writer name="John Mayer"/>
+            <Writer name="Pino Palladino"/>
+            <Writer name="Steven Jordan"/>
+        </Writers>
+    </Song>
+    <Album name="Continuum" release_date="2016" genre="Alternative"/>
+</Root>

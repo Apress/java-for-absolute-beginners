@@ -5,12 +5,16 @@ plugins {
 /* module with primitive types examples */
 ext.moduleName = 'chapter.eleven.rwf'
 
+dependencies {
+    compile misc.slf4j, misc.logback
+}
+
 jar {
     manifest {
         attributes(
                 "Created-By": System.getProperty('java.version'),
                 "Specification-Title": "Java for Absolute Beginners",
-                 "Main-Class": "com.apress.bgn.ch11.Demo",
+                 "Main-Class": "com.apress.bgn.ch11.FileDemo",
                 "Implementation-Version": version,
                 "Class-Path": configurations.compile.collect { it.getName() }.join(' ')
         )
