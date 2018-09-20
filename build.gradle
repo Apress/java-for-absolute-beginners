@@ -17,7 +17,8 @@ ext {
     testing = [
             jupiter : "org.junit.jupiter:junit-jupiter-engine:$junit5Version",
             launcher: "org.junit.platform:junit-platform-launcher:$junit5LauncherVersion",
-            mockito : "org.mockito:mockito-junit-jupiter:$mockitoVersion"
+            mockito : "org.mockito:mockito-junit-jupiter:$mockitoVersion",
+            tck     : "org.reactivestreams:reactive-streams-tck-flow:1.0.2"
     ]
 
     misc = [
@@ -43,6 +44,15 @@ ext {
             embedLog4j : "org.apache.tomcat.embed:tomcat-embed-logging-log4j:$tomcatVersion",
             jstl       : "jstl:jstl:1.2",
             taglibs    : "taglibs:standard:1.1.2"
+    ]
+
+    reactive = [
+            reactive_streams: "org.reactivestreams:reactive-streams:1.0.2",
+            akka            : "com.typesafe.akka:akka-stream_2.12:2.5.16",
+            mongo_streams   : "org.mongodb:mongodb-driver-reactivestreams:1.9.1",
+            ratpack         : "io.ratpack:ratpack-core:1.5.4",
+            reactor         : "io.projectreactor:reactor-core:3.1.9.RELEASE",
+            rxJava          : "io.reactivex.rxjava2:rxjava:2.2.2"
     ]
 }
 

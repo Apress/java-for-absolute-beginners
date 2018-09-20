@@ -9,7 +9,13 @@ ext.moduleName = 'chapter.twelve'
 
 apply plugin: 'java'
 apply plugin: 'idea'
+ext.moduleName = 'chapter.twelve'
 
+dependencies {
+    compile misc.logback, misc.slf4j, reactive.reactor
+    testCompile testing.jupiter, testing.tck
+    //compile reactive.reactive_streams, reactive.akka, reactive.mongo_streams, reactive.ratpack, reactive.rxJava
+}
 
 jar {
     manifest {

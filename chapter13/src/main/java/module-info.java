@@ -1,5 +1,6 @@
 /**
- * Created by iuliana.cosmina on 3/5/18.
+ * @author Iuliana Cosmina
+ * @since 1.0
  */
 module chapter.thirteen {
     requires org.slf4j;
