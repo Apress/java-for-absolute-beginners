@@ -1,4 +1,4 @@
-# Errata for *Book Title*
+== Errata for Java for Absolute Beginners
 
 On **page xx** [Summary of error]:
  
