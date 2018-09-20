@@ -1,8 +1,8 @@
 == Apress Source Code
 
-This repository accompanies [*Java for Absolute Beginners*](http://www.apress.com/...) by Iuliana Cosmina(Apress, 2018).
+This repository accompanies book *Java for Absolute Beginners* (http://www.apress.com/...) by Iuliana Cosmina(Apress, 2018).
 
-image::java-for-beginners_small.png[Cover image]
+image::java-for-beginners.png[Cover image]
 
 Download the files as a zip using the green button, or clone the repository to your machine using Git.
 
