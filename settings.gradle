@@ -1,4 +1,4 @@
-rootProject.name = 'java-bgn'
+rootProject.name = 'java-for-absolute-beginners'
 
 include 'chapter00'
 include 'chapter01'
