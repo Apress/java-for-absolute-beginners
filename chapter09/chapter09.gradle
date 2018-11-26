@@ -12,7 +12,8 @@ subprojects {
 
     dependencies {
         compile misc.slf4j, misc.logback
-        testRuntime testing.launcher, testing.jupiter
+        testCompile testing.api
+        testRuntimeOnly testing.engine
     }
 
     tasks.withType(Javadoc) {

@@ -6,8 +6,10 @@ ext.moduleName = 'chapter.nine.testing'
 
 dependencies {
     compile misc.derby
-    testCompile testing.launcher, testing.jupiter, testing.mockito
-    testRuntime testing.launcher, testing.jupiter, testing.mockito
+    
+    testCompile testing.api, testing.mockito
+    testRuntimeOnly testing.engine, testing.mockito
+    
 }
 
 //because Gradle is an idiot

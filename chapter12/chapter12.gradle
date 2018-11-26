@@ -13,7 +13,8 @@ ext.moduleName = 'chapter.twelve'
 
 dependencies {
     compile misc.logback, misc.slf4j, reactive.reactor
-    testCompile testing.jupiter, testing.tck
+    testCompile testing.api, testing.tck
+    testRuntimeOnly testing.engine, testing.tck
     //compile reactive.reactive_streams, reactive.akka, reactive.mongo_streams, reactive.ratpack, reactive.rxJava
 }
 

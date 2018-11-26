@@ -124,7 +124,7 @@ public class ReadingFormStdinDemo {
     }
 
     private static String getHelpString() {
-        return new StringBuilder("This application help you test various usage of Scanner. Enter type to be read next:")
+        return new StringBuilder("This application helps you test various usage of Scanner. Enter type to be read next:")
                 .append("\n\t help >  displays this help")
                 .append("\n\t exit >  leave the application")
                 .append("\n\t byte > read a byte")
