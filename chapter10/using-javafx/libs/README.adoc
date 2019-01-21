@@ -1,0 +1,9 @@
+== JavaFX 11
+
+JavaFx libraries were not only removed from the Oracle JDK, but they are no available on the Maven Central Repo.(They seem to be, but the jars uploaded there are empty)
+So I downloaded them from the official site https://gluonhq.com/products/javafx/ and added them to the project, so it will compile no matter what.
+
+OpenJFX is an open source, next generation client application platform for desktop, mobile and embedded systems built on Java.
+It is a collaborative effort by many individuals and companies with the goal of producing a modern, efficient, and fully featured toolkit for developing rich client applications.
+
+The JavaFX SDK software is licensed under GPL v2 + Classpath (see http://openjdk.java.net/legal/gplv2+ce.html).

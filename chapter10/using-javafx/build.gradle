@@ -5,9 +5,9 @@ ext.moduleName = 'chapter.ten.javafx'
 
 
 dependencies{
-    compile files('libs/javafx-base-11-ea+24-mac.jar')
-    compile files('libs/javafx-controls-11-ea+24-mac.jar')
-    compile files('libs/javafx-graphics-11-ea+24-mac.jar')
+        compile files("libs/$osType/javafx.base.jar")
+        compile files("libs/$osType/javafx.controls.jar")
+        compile files("libs/$osType/javafx.graphics.jar")
 }
 
 jar {
