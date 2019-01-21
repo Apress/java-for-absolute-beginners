@@ -13,7 +13,7 @@ _site
 .mtj.tmp/
 
 # Package Files #
-*.jar
+build/libs/*.jar
 *.war
 *.ear
 *.log
