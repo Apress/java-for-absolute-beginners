@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
  * Created by iuliana.cosmina on 2/25/18
  */
 public class Base {
-
     private static final Logger LOGGER = LogManager.getLogger();
 
     private int secret = 0;

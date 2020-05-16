@@ -1,22 +1,26 @@
 == Apress Source Code
 
+***
+
 This repository accompanies book *Java for Absolute Beginners* (https://www.apress.com/in/book/9781484237779) by Iuliana Cosmina(Apress, 2018).
 
 image::java-for-beginners.png[Cover image]
 
 Download the files as a zip using the green button, or clone the repository to your machine using Git.
 
-== Releases
+=== Releases
 Release v1.0 corresponds to the code in the published book, without corrections or updates.
+This project was built successfully with JDK versions 9,10,11,12,13,14 and Gradle versions 5.x and 6.x.
+The syntax is specific to Java versions up to and including 11.
 
-== Corrections
-For corrections to the content in the published book, see the file errata.md.
+=== Corrections
+For corrections to the content in the published book, see the file link:Errata.adoc[Errata.adoc].
 
-== Contributions
+=== Contributions
 See the file Contributing.adoc for more information on how you can contribute to this repository.
 
 
-== Building and Deploying
+=== Building and Deploying
 This is a Gradle multi-module project. Build it from scratch using:
 ----
 gradle clean build
@@ -32,3 +36,7 @@ Build it and copy dependencies into build/libs using:
 gradle clean build copyDependencies
 ----
 
+Gradle Wrapper has been added to the project, so you can now build the project using:
+----
+./gradlew clean build
+----

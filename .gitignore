@@ -3,8 +3,6 @@
 *.iml
 out
 build
-gradle
-gradlew*
 *.class
 transaction-logs
 _site
@@ -21,7 +19,5 @@ build/libs/*.jar
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-gradlew
-gradlew.bat
 .DS_Store
 generated
