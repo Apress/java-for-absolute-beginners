@@ -29,6 +29,7 @@ package com.apress.bgn.ch12.reactor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
@@ -69,9 +70,10 @@ public class ReactorDemo {
         Mono<String> empty = Mono.empty();
         log.info(" ----------------------- ");
 
+        log.info("timeStream");
         Flux<String> numbers = Flux.just("11", "22", "33");
         Flux<Long> periodFlux = Flux.interval(Duration.ofSeconds(2));
-        Flux.zip(numbers, periodFlux).map(Tuple2::getT1).doOnNext(log::info);
+        Flux.zip(numbers, periodFlux).map(Tuple2::getT1).doOnNext(log::info).subscribe();
 
         log.info(" ----------------------- ");
         Flux<Integer> infiniteFlux = Flux.fromStream(
